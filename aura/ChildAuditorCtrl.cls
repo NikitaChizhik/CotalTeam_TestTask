@@ -5,9 +5,9 @@ public with sharing class ChildAuditorCtrl {
         
         Id objectId = recordId; 
         List<Schema.ChildRelationship> aChildRelationshipList = Schema.getGlobalDescribe()
-            									.get(objectId.getSobjectType() + '').getDescribe().getChildRelationships();
+            				   .get(objectId.getSobjectType() + '').getDescribe().getChildRelationships();
         
-		Set<String> notQueryable = new Set<String>(); //some objects in salesforce can not be queried.
+	Set<String> notQueryable = new Set<String>(); //some objects in salesforce can not be queried.
         for (Schema.SObjectType objectApiName :Schema.getGlobalDescribe().values()) {
             Schema.DescribeSObjectResult objResult = objectApiName.getDescribe();
             if (objResult.isQueryable() == false) {
