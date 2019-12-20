@@ -30,7 +30,11 @@ public with sharing class ChildAuditorCtrl {
             childToQuery.put(childApiName, childQuery);
         }
 
-        List<ChildInfo> childInfos = new List<ChildInfo>();
+	List<ChildInfo> childInfos = new List<ChildInfo>();
+        if (childToQuery.keySet().size() > (Limits.getLimitQueries() - 20)) { // remain 20 soqls for the rest of the code.
+            return childInfos;
+        }
+	    
         ChildInfo aChildInfo;
         Integer count;
         for (String childNameApi :childToQuery.keySet()) {
